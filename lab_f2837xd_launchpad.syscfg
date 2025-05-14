@@ -1,0 +1,118 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --board "/boards/LAUNCHXL_F28379D" --device "F2837xD" --part "F2837xD_337ZWT" --package "F2837xD_337ZWT" --context "CPU1" --product "C2000WARE@5.04.00.00"
+ * @v2CliArgs --device "TMS320F28377D" --package "337ZWT" --board "/boards/LAUNCHXL_F28379D" --context "CPU1" --product "C2000WARE@5.04.00.00"
+ * @versions {"tool":"1.21.0+3721"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm  = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1 = epwm.addInstance();
+const epwm2 = epwm.addInstance();
+const eqep  = scripting.addModule("/driverlib/eqep.js", {}, false);
+const eqep1 = eqep.addInstance();
+const eqep2 = eqep.addInstance();
+const eqep3 = eqep.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                                                      = "myEPWM0";
+epwm1.epwmTimebase_clockDiv                                      = "EPWM_CLOCK_DIVIDER_128";
+epwm1.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_14";
+epwm1.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode            = true;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmTimebase_period                                        = 279;
+epwm1.epwmCounterCompare_cmpA                                    = 140;
+epwm1.epwm.$assign                                               = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                     = "boosterpack1.40";
+epwm1.epwm.epwm_bPin.$assign                                     = "boosterpack1.39";
+
+epwm2.$name                                                      = "myEPWM1";
+epwm2.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode            = true;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.$hardware                                                  = system.deviceData.board.components.BP_SITE_1.subComponents.PWM_LOC2;
+epwm2.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_1";
+epwm2.epwmTimebase_period                                        = 12500;
+epwm2.epwmCounterCompare_cmpA                                    = 12375;
+
+eqep1.$name                   = "myEQEP1";
+eqep1.eqepResolution          = "EQEP_CONFIG_1X_RESOLUTION";
+eqep1.positionCounterMax      = 4600;
+eqep1.latchPositionCounter    = "EQEP_LATCH_UNIT_TIME_OUT";
+eqep1.enableModule            = true;
+eqep1.enableUnitTimer         = true;
+eqep1.unitTimerPeriod         = 6000000;
+eqep1.registerInterrupts      = true;
+eqep1.enableInterrupt         = true;
+eqep1.interruptSources        = ["EQEP_INT_UNIT_TIME_OUT"];
+eqep1.emulationMode           = "EQEP_EMULATIONMODE_RUNFREE";
+eqep1.useCase                 = "NO STROBE";
+eqep1.$hardware               = system.deviceData.board.components.EQEP1_HEADER;
+eqep1.positionCounterMode     = "EQEP_POSITION_RESET_UNIT_TIME_OUT";
+eqep1.aQual.padConfig         = "PULLUP";
+eqep1.bQual.padConfig         = "PULLUP";
+eqep1.eqepInt.enableInterrupt = true;
+
+eqep2.eqepResolution          = "EQEP_CONFIG_1X_RESOLUTION";
+eqep2.positionCounterMax      = 4600;
+eqep2.latchPositionCounter    = "EQEP_LATCH_UNIT_TIME_OUT";
+eqep2.enableModule            = true;
+eqep2.enableUnitTimer         = true;
+eqep2.unitTimerPeriod         = 6000000;
+eqep2.registerInterrupts      = true;
+eqep2.enableInterrupt         = true;
+eqep2.interruptSources        = ["EQEP_INT_UNIT_TIME_OUT"];
+eqep2.emulationMode           = "EQEP_EMULATIONMODE_RUNFREE";
+eqep2.useCase                 = "NO STROBE";
+eqep2.$name                   = "myEQEP2";
+eqep2.$hardware               = system.deviceData.board.components.EQEP2_HEADER;
+eqep2.positionCounterMode     = "EQEP_POSITION_RESET_UNIT_TIME_OUT";
+eqep2.aQual.padConfig         = "PULLUP";
+eqep2.bQual.padConfig         = "PULLUP";
+eqep2.eqepInt.enableInterrupt = true;
+
+eqep3.eqepResolution          = "EQEP_CONFIG_1X_RESOLUTION";
+eqep3.positionCounterMax      = 4600;
+eqep3.latchPositionCounter    = "EQEP_LATCH_UNIT_TIME_OUT";
+eqep3.enableModule            = true;
+eqep3.enableUnitTimer         = true;
+eqep3.unitTimerPeriod         = 6000000;
+eqep3.registerInterrupts      = true;
+eqep3.enableInterrupt         = true;
+eqep3.interruptSources        = ["EQEP_INT_UNIT_TIME_OUT"];
+eqep3.emulationMode           = "EQEP_EMULATIONMODE_RUNFREE";
+eqep3.useCase                 = "NO STROBE";
+eqep3.$name                   = "myEQEP3";
+eqep3.positionCounterMode     = "EQEP_POSITION_RESET_UNIT_TIME_OUT";
+eqep3.aQual.padConfig         = "PULLUP";
+eqep3.bQual.padConfig         = "PULLUP";
+eqep3.eqepInt.enableInterrupt = true;
+eqep3.eqep.eqepaPin.$assign   = "boosterpack2.80";
+eqep3.eqep.eqepbPin.$assign   = "boosterpack2.79";
+eqep3.eqep.eqepiPin.$assign   = "boosterpack2.77";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+epwm2.epwm.$suggestSolution           = "EPWM2";
+epwm2.epwm.epwm_aPin.$suggestSolution = "boosterpack1.38";
+epwm2.epwm.epwm_bPin.$suggestSolution = "boosterpack1.37";
+eqep1.eqep.$suggestSolution           = "EQEP1";
+eqep1.eqep.eqepaPin.$suggestSolution  = "qepA.1";
+eqep1.eqep.eqepbPin.$suggestSolution  = "qepA.2";
+eqep1.eqep.eqepiPin.$suggestSolution  = "qepA.3";
+eqep2.eqep.$suggestSolution           = "EQEP2";
+eqep2.eqep.eqepaPin.$suggestSolution  = "qepB.1";
+eqep2.eqep.eqepbPin.$suggestSolution  = "qepB.2";
+eqep2.eqep.eqepiPin.$suggestSolution  = "qepB.3";
+eqep3.eqep.$suggestSolution           = "EQEP3";
